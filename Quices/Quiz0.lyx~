@@ -573,11 +573,11 @@ E\left(\overrightarrow{w}\left(t\right)\right)\text{=}\frac{1}{N}\sum_{i=1}^{N}\
 
 \begin_layout Standard
 2 - Seguidamente debemos obtener las derivadas parciales pàra obtener el
- vector gradiente, necesitamos las derivadas despejando 
-\begin_inset Formula $\overrightarrow{x}_{i}$
+ vector gradiente 
+\begin_inset Formula $\nabla_{\overrightarrow{w}\left(t\right)}$
 \end_inset
 
- y 
+, necesitamos las derivadas despejando 
 \begin_inset Formula $\overrightarrow{w}$
 \end_inset
 
@@ -590,7 +590,7 @@ E\left(\overrightarrow{w}\left(t\right)\right)\text{=}\frac{1}{N}\sum_{i=1}^{N}\
 Derivada parcial para
 \series default
  
-\begin_inset Formula $\overrightarrow{x}_{1}$
+\begin_inset Formula $\overrightarrow{w}$
 \end_inset
 
  :
@@ -600,7 +600,7 @@ Derivada parcial para
 
 \begin_inset Formula 
 \[
-\frac{d}{dx}\ln\left(\overrightarrow{x}_{i}\cdot\overrightarrow{w}+1\right)-\ln\left(t_{i}+1\right)
+\frac{d}{dw}\ln\left(\overrightarrow{x}_{i}\cdot\overrightarrow{w}+1\right)-\ln\left(t_{i}+1\right)
 \]
 
 \end_inset
@@ -612,7 +612,7 @@ Derivada parcial para
 
 \begin_inset Formula 
 \[
-=\frac{d}{dx}[\ln\left(wx+1\right)]+\frac{d}{dx}-\ln\left(t_{i}+1\right)
+=\frac{d}{dw}[\ln\left(wx+1\right)]+\frac{d}{dw}-\ln\left(t_{i}+1\right)
 \]
 
 \end_inset
@@ -624,7 +624,7 @@ Derivada parcial para
 
 \begin_inset Formula 
 \[
-=\frac{1}{wx+1}*\frac{d}{dx}[wx+1]
+=\frac{1}{xw+1}*\frac{d}{dw}[xw+1]
 \]
 
 \end_inset
@@ -636,7 +636,7 @@ Derivada parcial para
 
 \begin_inset Formula 
 \[
-=\frac{w*\frac{d}{dx}[x]+\frac{d}{dx}[1]}{wx+1}
+=\frac{x*\frac{d}{dw}[w]+\frac{d}{dw}[1]}{xw+1}
 \]
 
 \end_inset
@@ -648,7 +648,7 @@ Derivada parcial para
 
 \begin_inset Formula 
 \[
-=\frac{w}{wx+1}
+=\frac{x}{xw+1}
 \]
 
 \end_inset
@@ -657,9 +657,9 @@ Derivada parcial para
 \begin_inset Newline newline
 \end_inset
 
-El cual sería de la extención de 
+Con esto obtenemos la derivada parcial para construir el vector gradiente
 \series bold
-W.
+.
 \end_layout
 
 \begin_layout Standard
@@ -671,7 +671,7 @@ Al llevarlo la derivada a la función de error la función nos quedaría de
 
 \begin_inset Formula 
 \[
-E\left(\overrightarrow{w}\left(t\right)\right)\text{=}\frac{1}{N}\sum_{i=1}^{N}\left(\frac{\overrightarrow{w}_{i}}{(\overrightarrow{w}_{i}*\overrightarrow{x}_{i})+1}\right)
+E\left(\overrightarrow{w}\left(t\right)\right)\text{=}\frac{1}{N}\sum_{i=1}^{N}\left(\frac{\overrightarrow{x}_{i}}{(\overrightarrow{x}_{i}*\overrightarrow{w}_{i})+1}\right)
 \]
 
 \end_inset

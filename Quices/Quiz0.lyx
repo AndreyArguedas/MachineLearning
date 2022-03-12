@@ -544,6 +544,10 @@ donde
  corresponde al modelo.
  Use la regla de la cadena.
  
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -551,6 +555,14 @@ donde
 
 \series bold
 RESPUESTA:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -694,6 +706,35 @@ RMSE (Root Mean Squared Error).
 \emph default
 Use fuentes bibliograficas academicas y especifiquelas.
  
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+RESPUESTA:
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Para RMSE los valores atípicos hacen que el resultado de error tome valores
+ muy altos, sin embargo en RMSLE estos son escalados de manera que practicamente
+ se anula su efecto, por lo que con RMSLE tenemos un valor de error relativo,
+ además RMSLE incurren en una penalización mayor al subestimar y esto puede
+ ser muy util en casos en los que no es tolerable la sobrestimación pero
+ no hay tanto problema con la sobreestimación.
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_body
