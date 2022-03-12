@@ -190,7 +190,7 @@ con la respuesta,
 \begin_inset Text
 
 \begin_layout Plain Layout
-Programa de Especialidad en Ciencias de los Datos
+Programa de Maestria en Ciencias de la Computacion
 \end_layout
 
 \end_inset
@@ -212,7 +212,7 @@ junto con el documento lyx, en archivo .zip.
 \begin_layout Plain Layout
 
 \series bold
-Curso: Matemática para Ciencias de los Datos
+Curso: Aprendizaje Automatico
 \end_layout
 
 \end_inset
@@ -394,8 +394,9 @@ Nota: ________________
 \begin_inset Text
 
 \begin_layout Plain Layout
-Nombre del (la) estudiante: ____________________________________________________
-____________________
+Nombre del (la) estudiante: 
+\series bold
+Andrey Arguedas Espinoza
 \end_layout
 
 \end_inset
@@ -435,7 +436,9 @@ ____________________
 \begin_inset Text
 
 \begin_layout Plain Layout
-Carné: ___________________________
+Carné: 
+\series bold
+2020426569
 \end_layout
 
 \end_inset
@@ -543,6 +546,140 @@ donde
  
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+RESPUESTA:
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+1 - Primero sustituimos utilizando 
+\begin_inset Formula $y\left(\overrightarrow{x}_{i}\right)=\overrightarrow{x}_{i}\cdot\overrightarrow{w}$
+\end_inset
+
+ por lo que obtenemos : 
+\begin_inset Formula 
+\[
+E\left(\overrightarrow{w}\left(t\right)\right)\text{=}\frac{1}{N}\sum_{i=1}^{N}\left(\ln\left(\overrightarrow{x}_{i}\cdot\overrightarrow{w}+1\right)-\ln\left(t_{i}+1\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2 - Seguidamente debemos obtener las derivadas parciales pàra obtener el
+ vector gradiente, necesitamos las derivadas despejando 
+\begin_inset Formula $\overrightarrow{x}_{i}$
+\end_inset
+
+ y 
+\begin_inset Formula $\overrightarrow{w}$
+\end_inset
+
+ :
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Derivada parcial para
+\series default
+ 
+\begin_inset Formula $\overrightarrow{x}_{1}$
+\end_inset
+
+ :
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d}{dx}\ln\left(\overrightarrow{x}_{i}\cdot\overrightarrow{w}+1\right)-\ln\left(t_{i}+1\right)
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\frac{d}{dx}[\ln\left(wx+1\right)]+\frac{d}{dx}-\ln\left(t_{i}+1\right)
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\frac{1}{wx+1}*\frac{d}{dx}[wx+1]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\frac{w*\frac{d}{dx}[x]+\frac{d}{dx}[1]}{wx+1}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\frac{w}{wx+1}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+El cual sería de la extención de 
+\series bold
+W.
+\end_layout
+
+\begin_layout Standard
+Al llevarlo la derivada a la función de error la función nos quedaría de
+ la siguiente manera:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\overrightarrow{w}\left(t\right)\right)\text{=}\frac{1}{N}\sum_{i=1}^{N}\left(\frac{\overrightarrow{w}_{i}}{(\overrightarrow{w}_{i}*\overrightarrow{x}_{i})+1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 
 \series bold
