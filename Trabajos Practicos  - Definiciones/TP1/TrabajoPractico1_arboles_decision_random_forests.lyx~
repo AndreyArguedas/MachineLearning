@@ -1,0 +1,885 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{palatino}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Aprendizaje Automático: Trabajo práctico 1
+\end_layout
+
+\begin_layout Author
+M.
+ Sc.
+ Saúl Calderón Ramírez 
+\begin_inset Newline newline
+\end_inset
+
+Instituto Tecnológico de Costa Rica, 
+\begin_inset Newline newline
+\end_inset
+
+Escuela de Ingeniería en Computación
+\begin_inset Newline newline
+\end_inset
+
+PAttern Recongition and MAchine Learning Group (PARMA-Group)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Fecha de entrega:
+\series default
+ Domingo 24 de Abril.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+REDEFINIIR
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Entrega
+\series default
+: Un archivo .zip con el código fuente LaTeX o Lyx, el pdf, y un notebook
+ Jupyter, debidamente documentado, con una función definida por ejercicio.
+ A través del TEC-digital.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Modo de trabajo
+\series default
+: Grupos de 3 personas.
+\end_layout
+
+\begin_layout Abstract
+En el presente trabajo práctico se introducir los arboles de decision por
+ medio de su implementación para resolver un problema práctico.
+ 
+\end_layout
+
+\begin_layout Section
+Implementación de la clasificación multi-clase con árboles de decisión 
+\end_layout
+
+\begin_layout Enumerate
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+El conjunto de datos disponible en 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.kaggle.com/argonalyst/sao-paulo-real-estate-sale-rent-april-2019
+\end_layout
+
+\end_inset
+
+ corresponde a registros de propiedades en venta en la ciudad de Sao Paulo,
+ Brasil, en Abril del 2019.
+ El objetivo del modelo a construir es estimar el valor de la propiedad.
+ 
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+Utilizar la version recortada del dataset, disponible en la carpeta del
+ curso
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+ La Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Muestra-del-conjunto"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ despliega una muestra del conjunto de datos.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Graphics
+	filename muestra.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Muestra del conjunto de datos a utilizar.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Muestra-del-conjunto"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para el modelo a implementar, se plantea considerar los atributos numéricos
+ de 
+\emph on
+Rooms, Size, Toilets y Parking.
+ 
+\emph default
+Implemente usando Pandas y/o Pytorch, la lectura del dataset usando solamente
+ tales atributos.
+ 
+\series bold
+\emph on
+No use ciclos
+\series default
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+Como preprocesamiento del conjunto de datos, es necesario discretizar la
+ variable a estimar 
+\begin_inset Formula $y$
+\end_inset
+
+ (precio, en reales brasileños), en 4 categorias: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $900000<y$
+\end_inset
+
+ , categoría 4
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $580000<y<900000$
+\end_inset
+
+, categoría 3
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $400000<y<580000$
+\end_inset
+
+, categoría 2
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $y<400000$
+\end_inset
+
+, categoría 1
+\end_layout
+
+\begin_layout Standard
+Utilice pytorch para realizar la convención correspondiente.
+ 
+\series bold
+\emph on
+No use ciclos
+\series default
+\emph default
+.
+ Guarde las etiquetas como la ultima columna de la variable 
+\emph on
+dataset
+\emph default
+_
+\emph on
+torch
+\emph default
+ a retornar en la funcion 
+\emph on
+read_dataset
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Para resolver el problema de clasificar las propiedades según los rangos
+ de precio antes definidos.
+ Para ello utilizará el código provisto en el 
+\emph on
+notebook 
+\emph default
+de 
+\emph on
+Jupyter
+\emph default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+El código provisto define las clases 
+\emph on
+CART
+\emph default
+ y Node_
+\emph on
+CART
+\emph default
+, las cuales permiten construir un CART binario.
+ Cada nodo del arbol tiene atributos como el 
+\emph on
+feature, 
+\emph default
+el umbral, y el coeficiente de 
+\emph on
+gini
+\emph default
+ de la partición definida en tal nodo.
+ Además define el atributo 
+\emph on
+dominant_class
+\emph default
+ para el nodo, el cual es el resultado de calcular la clase con mayor cantidad
+ de apariciones en la partición que define al nodo.
+ Finalmente el código incluye la funcionalidad para generar un archivo 
+\emph on
+xml
+\emph default
+ (el cual se puede abrir en cualquier navegador web), para representar fácilment
+e el árbol.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Implemente el método 
+\emph on
+calculate_gini(data_partition_torch, num_classes = 4), 
+\emph default
+el cual calcule el coeficiente de gini para el conjunto de datos recibido
+ en un tensor de 
+\emph on
+pytorch.
+ 
+\emph default
+Para ello utilice la definición inidicada en el material del curso:
+\begin_inset Formula 
+\[
+E_{\textrm{gini},\rho}\left(\tau_{d}\right)=1-\sum_{k=1}^{K}a_{k}^{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\series bold
+(10 puntos)
+\series default
+ Implemente el método 
+\emph on
+calculate_entropy(data_partition_torch, num_classes = 4), 
+\emph default
+el cual calcule la entropía de las etiquetas, representadas en un tensor
+ de 
+\emph on
+pytorch.
+ 
+\emph default
+Para ello utilice la definición inidicada en el material del curso:
+\begin_inset Formula 
+\[
+E_{\textrm{entropy},\rho}\left(\tau_{d}\right)=-\sum_{k=1}^{K}p\left[k\right]\log\left(p\left[k\right]\right),
+\]
+
+\end_inset
+
+donde 
+\begin_inset Formula $p\left[k\right]$
+\end_inset
+
+ es la función de densidad de las etiquetas en la partición de datos recibida
+ por parámetro.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(20 puntos)
+\series default
+ Implemente el método 
+\emph on
+select_best_feature_and_thresh(data_torch, list_features_selected = [],
+ num_classes = 4), 
+\emph default
+de la clase 
+\emph on
+Node_CART.
+ 
+\emph default
+Este método recibe como parámetros el conjunto de datos en un tensor tipo
+ torch a analizar, además de la lista de 
+\emph on
+features 
+\emph default
+seleccionados hasta ahora (para ignorarlos en futuras pruebas), y la cantidad
+ de clases a discriminar.
+ El método debe probar de forma extensiva todos los posibles features y
+ sus correspondientes umbrales en los datos recibidos, hasta dar con el
+ menor coeficiente ponderado de gini (o la minima entropía, dependiendo
+ de la función de error a utilizar) (ignorando los features en 
+\emph on
+list_features_selected = []
+\emph default
+).
+ 
+\series bold
+Utilice indexación lógica para evitar al máximo el uso de estructuras de
+ repetición tipo 
+\emph on
+for
+\series default
+\emph default
+.
+ Solamente puede usar estructuras de repetición para iterar por los 
+\emph on
+features
+\emph default
+ y posibles umbrales dentro del conjunto de datos.
+ Recuerde que para evaluar una posible partición, es necesario calcular
+ el coeficiente de gini ponderado sugerido para decidir el feature y umbral
+ óptimos es:
+\begin_inset Formula 
+\[
+\overline{E}_{\textrm{gini}}\left(\tau_{d},d\right)=\frac{n_{i}}{n}E_{\textrm{gini}}\left(D_{i}\right)+\frac{n_{d}}{n}E_{\textrm{gini}}\left(D_{d}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(5 puntos) 
+\series default
+Implemente la función 
+\emph on
+test_CART 
+\emph default
+la cual evalúe un CART previamente entrenado para un conjunto de datos 
+\begin_inset Formula $D$
+\end_inset
+
+ representado en un tensor.
+ Calcule la tasa de aciertos (
+\emph on
+accuracy
+\emph default
+), definida como: 
+\begin_inset Formula 
+\[
+a=\frac{c}{n}
+\]
+
+\end_inset
+
+donde 
+\begin_inset Formula $c$
+\end_inset
+
+ corresponde a las estimaciones correctas, para tal conjunto de datos y
+ retornela.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(5 puntos)
+\series default
+ Implemente la función 
+\emph on
+partition_validation(dataset_torch, max_CART_depth, num_splits)
+\emph default
+ la cual genere
+\emph on
+ num_splits 
+\emph default
+particiones de forma aleatoria del conjunto de datos recibido en 
+\emph on
+dataset_torch 
+\emph default
+(matriz de datos donde la ultima fila son las etiquetas).
+ Para ello utilice la funición 
+\emph on
+ShuffleSplit 
+\emph default
+del paquete 
+\emph on
+sklearn.model_selection
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Evaluación del CART
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(20 puntos)
+\series default
+ Evalúe el CART implementado con el conjunto de datos completo provisto
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ usandolo como conjunto de datos de entrenamiento y prueba.
+ Reporte la tasa de aciertos obtenida e incluya el código de la evaluación.
+ Pruebe con una profundidad máxima de 2 y 3 nodos, siempre con minimo 2
+ observaciones por hoja.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Para 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+una profundidad máxima de 2 y 3 nodos
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+: evalúe el CART implementado usando 10 particiones aleatorias del conjunto
+ de datos, con un 70% del conjunto de datos como conjunto de datos de entrenamie
+nto, y el restante 30% como conjunto de datos de prueba.
+ Reporte una tabla con la tasa de aciertos de cada una de las 10 corridas,
+ y el promedio y desviación estándar para las 10 corridas.
+\end_layout
+
+\begin_layout Section
+Implementación de el Boque Aleatorio (Random Forest)
+\end_layout
+
+\begin_layout Enumerate
+Implemente el modelo de 
+\emph on
+Random Forests, 
+\emph default
+en la clase del mismo nombre.
+ Tal clase tiene como atributos la cantidad de árboles que conforman el
+ bosque, y la profundidad máxima de todos ellos, según el código provisto.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Implemente la función 
+\emph on
+train_random_forest 
+\emph default
+la cual realice 
+\begin_inset Formula $K$
+\end_inset
+
+ particiones aleatorias disjuntas, para entrenar con cada una de ellas un
+ CART, según se implementó anteriormente.
+ Para tal implementación use la función 
+\emph on
+KFold 
+\emph default
+del paquete 
+\emph on
+sklearn.model_selection.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(5 puntos)
+\series default
+ Implemente la función 
+\emph on
+evaluate_random_forest(input_torch), 
+\emph default
+la cual para una observación
+\emph on
+ input_torch, 
+\emph default
+calcule la estimación del random forest, usando el esquema de votación máxima
+ comentado en clase.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(5 puntos)
+\series default
+ Implemente la función
+\emph on
+ test_random_forest(testset_torch)
+\emph default
+, la cual evalúe la tasa de aciertos
+\emph on
+ (accuracy) 
+\emph default
+del
+\emph on
+ random forest 
+\emph default
+para todo un conjunto de datos de test, representado en la matriz
+\emph on
+ testset_torch 
+\emph default
+(la cual tiene una columna por feature, y la última columna corresponde
+ a la etiqueta de tal observación en esa fila).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Pruebe y reporte la tasa de aciertos del 
+\emph on
+random forest 
+\emph default
+con una profundidad de 3 nodos y 5 CARTs.
+ Comente los resultados respecto a los resultados anteriores.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
+Evaluación del Random Forest 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Para 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+una profundidad máxima de 3 nodos
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ con 3 y 5 CARTs: evalúe el 
+\emph on
+random forest
+\emph default
+ implementado usando 10 particiones aleatorias del conjunto de datos, con
+ un 70% del conjunto de datos como conjunto de datos de entrenamiento, y
+ el restante 30% como conjunto de datos de prueba.
+ Reporte una tabla con la tasa de aciertos de cada una de las 10 corridas,
+ y el promedio y desviación estándar para las 10 corridas.
+ Comente los resultados respecto a los resultados anteriores.
+ 
+\end_layout
+
+\begin_layout Section
+CART para regresion
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(20 puntos extra)
+\series default
+ Implemente una modificacion del CART para realizar regresion.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Investigue que cambios es necesario hacer (funcion de error, valor estimado
+ por nodo, algoritmo de optimizacion, etc.) para hacer que el modelo estime
+ un valor continuo.
+ Documente tales modificaciones, citando las referencias correspondientes,
+ en no mas de 3 parrafos.
+\end_layout
+
+\begin_layout Enumerate
+Implemente la variante del CART para regresion segun lo investigado.
+\end_layout
+
+\begin_layout Enumerate
+Para 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+una profundidad máxima de 2 y 3 nodos
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+: evalúe el CART de regresion implementado usando 10 particiones aleatorias
+ del conjunto de datos, con un 70% del conjunto de datos como conjunto de
+ datos de entrenamiento, y el restante 30% como conjunto de datos de prueba.
+ Reporte una tabla con la tasa de aciertos de cada una de las 10 corridas,
+ y el promedio y desviación estándar para las 10 corridas.
+\end_layout
+
+\begin_layout Enumerate
+Compare los resultados del CART para clasificacion con el CART para regresion
+ y comente.
+ 
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
