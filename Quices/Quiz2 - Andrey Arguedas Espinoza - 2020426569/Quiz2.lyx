@@ -599,8 +599,69 @@ x2-w2
 
 \begin_inset Formula 
 \[
-d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\left[\begin{array}{cc}
-\frac{(x1-w1)^{2}}{a^{2}} & \frac{(x2-w2)^{2}}{a^{2}}\end{array}\right]}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\begin{array}{cc}
+\frac{(x1-w1)^{2}}{a^{2}}+ & \frac{(x2-w2)^{2}}{a^{2}}\end{array}}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\frac{1}{a^{2}}\begin{array}{cc}
+(x1-w1)^{2} & +(x2-w2)^{2}\end{array}}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\frac{1}{a^{2}}*(x1-w1)^{2}+(x2-w2)^{2}=(a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2})^{\frac{1}{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{(x1-w1)^{2}+(x2-w2)^{2}}=\frac{1}{a^{2}}*a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{(x1-w1)^{2}+(x2-w2)^{2}}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
 \]
 
 \end_inset

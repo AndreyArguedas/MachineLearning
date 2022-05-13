@@ -538,10 +538,10 @@ d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\left(\overrightar
 
 \begin_inset Formula 
 \[
-d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\left(\overrightarrow{x}-\overrightarrow{w}\right)^{T}[\begin{array}{cc}
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\left(\overrightarrow{x}-\overrightarrow{w}\right)^{T}\left[\begin{array}{cc}
 \frac{1}{a^{2}} & 0\\
 0 & \frac{1}{a^{2}}
-\end{array}]^{-1}\left(\overrightarrow{x}-\overrightarrow{w}\right)}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\end{array}\right]^{-1}\left(\overrightarrow{x}-\overrightarrow{w}\right)}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
 \]
 
 \end_inset
@@ -571,7 +571,36 @@ a^{2} & 0\\
 d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{[x1-w1,x2-w2][\begin{array}{cc}
 a^{2} & 0\\
 0 & a^{2}
+\end{array}]\left(\overrightarrow{x}-\overrightarrow{w}\right)}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\left[\begin{array}{cc}
+\frac{x1-w1}{a^{2}} & \frac{x2-w2}{a^{2}}\end{array}\right][\begin{array}{c}
+x1-w1\\
+x2-w2
 \end{array}]}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d_{M}\left(\overrightarrow{x},\overrightarrow{w}\right)=\sqrt{\left[\begin{array}{cc}
+\frac{(x1-w1)^{2}}{a^{2}} & \frac{(x2-w2)^{2}}{a^{2}}\end{array}\right]}=a\left\Vert \overrightarrow{x}-\overrightarrow{w}\right\Vert _{2}
 \]
 
 \end_inset
