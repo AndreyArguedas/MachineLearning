@@ -1,0 +1,591 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{palatino}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Aprendizaje Automático: Trabajo práctico 2
+\end_layout
+
+\begin_layout Author
+Ph.
+ D.
+ Saúl Calderón Ramírez 
+\begin_inset Newline newline
+\end_inset
+
+Instituto Tecnológico de Costa Rica,
+\end_layout
+
+\begin_layout Author
+PAttern Recongition and MAchine Learning Group (PARMA-Group)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Fecha de entrega:
+\series default
+ Martes 31 de Mayo del 2022.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Entrega
+\series default
+: Un archivo .zip con el código fuente LaTeX o Lyx, el pdf, y un jupyter
+ en Pytorch, debidamente documentado, con una función definida por ejercicio.
+ A través del TEC-digital.
+\end_layout
+
+\begin_layout Section
+Implementación del algoritmo K-vecinos mas cercanos
+\end_layout
+
+\begin_layout Standard
+El algoritmo de K-vecinos mas cercanos es un algoritmo de aprendizaje automatico
+ supervisado muy popular por su simplicidad.
+ Dado un conjunto de datos representado matricialmente en la matrix 
+\begin_inset Formula $X_{\textrm{train}}\in\mathbb{R}^{N\times D}$
+\end_inset
+
+ y un arreglo de etiquetas 
+\begin_inset Formula $\overrightarrow{t}\in\mathbb{R}^{N}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+X_{\textrm{train}}=\begin{bmatrix}- & \overrightarrow{x}_{1} & -\\
+ & \vdots\\
+- & \overrightarrow{x}_{N_{\textrm{train}}} & -
+\end{bmatrix}\qquad\overrightarrow{t}=\begin{bmatrix}t_{1}\\
+\vdots\\
+t_{N_{\textrm{train}}}
+\end{bmatrix}
+\]
+
+\end_inset
+
+Para cada dato 
+\begin_inset Formula $\overrightarrow{x}_{i}^{\left(\textrm{test}\right)}\in X_{\textrm{test}}$
+\end_inset
+
+ en un conjunto de datos de prueba o evaluacion 
+\begin_inset Formula $X_{\textrm{test}}\in\mathbb{R}^{N_{\textrm{test}}\times D}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+X_{\textrm{test}}=\begin{bmatrix}- & \overrightarrow{x}_{1} & -\\
+ & \vdots\\
+- & \overrightarrow{x}_{N} & -
+\end{bmatrix}
+\]
+
+\end_inset
+
+se crea un conjunto de datos 
+\begin_inset Formula $X_{\textrm{KNN}}$
+\end_inset
+
+ con los 
+\begin_inset Formula $K$
+\end_inset
+
+ vecinos mas cercanos de la observacion 
+\begin_inset Formula $\overrightarrow{x}_{j}$
+\end_inset
+
+ en el conjunto de datos 
+\begin_inset Formula $X_{\textrm{train}}$
+\end_inset
+
+, donde cada observacion 
+\begin_inset Formula $\overrightarrow{x}_{i}\in X_{\textrm{KNN}}$
+\end_inset
+
+ cumple que:
+\begin_inset Formula 
+\[
+X_{\textrm{KNN}}=\arg\min_{K\:\textrm{min}\:j}\left(d\left(\overrightarrow{x}_{i}^{\left(\textrm{test}\right)}-\overrightarrow{x}_{j}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Luego de tomar los K vecinos mas cercanos de la observacion 
+\begin_inset Formula $\overrightarrow{x}_{i}^{\left(\textrm{test}\right)}$
+\end_inset
+
+ se realiza una votacion segun las etiquetas correspondientes 
+\begin_inset Formula $t_{i}^{\left(\textrm{test}\right)}$
+\end_inset
+
+, y se toma como estimacion de la etiqueta 
+\begin_inset Formula $\widetilde{t}_{j}$
+\end_inset
+
+ la etiqueta mas votada.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(50 puntos)
+\series default
+ Implemente el algoritmo de K-vecinos mas cercanos con la posibilidad de
+ usar la distancia euclidiana y la de Manhattan en la funcion 
+\begin_inset Formula $d\left(\overrightarrow{x}_{i}-\overrightarrow{x}_{j}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Realice la implementacion de forma completamente matricial, para cada observacio
+n 
+\begin_inset Formula $\overrightarrow{x}_{i}^{\left(\textrm{test}\right)}$
+\end_inset
+
+ 
+\emph on
+evaluate_k_nearest_neighbors_observation(data_training, labels_training,
+ test_observation, K = 7, is_euclidian = True)
+\emph default
+ (
+\series bold
+No use ciclos 
+\emph on
+for
+\series default
+\emph default
+).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Para ello use funcionalidades de 
+\emph on
+pytorch 
+\emph default
+como repeat, mode, sort, etc.
+ 
+\end_layout
+
+\begin_layout Enumerate
+is_euclidian indica si se usara la distancia Euclidiana o la de Manhattan
+ de lo contrario.
+ 
+\begin_inset Formula $K$
+\end_inset
+
+ corresponde a la cantidad de vecinos a evaluar
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Para todo el conjunto de datos 
+\begin_inset Formula $X_{\textrm{test}}$
+\end_inset
+
+ implemente la funcion 
+\emph on
+evaluate_k_nearest_neighbors_test_dataset(data_training, labels_training,
+ test_dataset, K = 3, is_euclidian = True), 
+\emph default
+la cual utilice la funcion previamente construida 
+\emph on
+evaluate_k_nearest_neighbors_observation
+\emph default
+ para calcular el arreglo de estimaciones 
+\begin_inset Formula $\overrightarrow{\widetilde{t}}$
+\end_inset
+
+ para todos los datos en 
+\begin_inset Formula $X_{\textrm{test}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Implemente la funcion 
+\emph on
+calcular_tasa_aciertos 
+\emph default
+la cual tome un arreglo de estimaciones 
+\begin_inset Formula $\overrightarrow{\widetilde{t}}$
+\end_inset
+
+ y un arreglo de etiquetas 
+\begin_inset Formula $\overrightarrow{x}_{i}^{\left(\textrm{test}\right)}$
+\end_inset
+
+ y calcule la tasa de aciertos definida como 
+\begin_inset Formula $\frac{c}{N}$
+\end_inset
+
+ donde 
+\begin_inset Formula $c$
+\end_inset
+
+ es la cantidad de estimaciones correctas.
+ 
+\series bold
+(No use ciclos 
+\emph on
+for
+\emph default
+)
+\series default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+(5 puntos)
+\series default
+ Para un conjunto de datos de 
+\begin_inset Formula $N=4000$
+\end_inset
+
+ (2000 observaciones por clase) genere un conjunto de datos con medias 
+\begin_inset Formula $\mu_{1}=\left[12,12\right]^{T}$
+\end_inset
+
+, 
+\begin_inset Formula $\mu_{2}=\left[15,15\right]^{T}$
+\end_inset
+
+, y desviaciones estandar 
+\begin_inset Formula $\sigma_{1}=\left[3,3\right]^{T}$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma_{2}=\left[2,2\right]^{T}$
+\end_inset
+
+.
+ Grafique los datos y muestre las figuras.
+\end_layout
+
+\begin_layout Enumerate
+Compruebe y compare para las dos distancias implementadas, usando el dataset
+ anterior, y 
+\begin_inset Formula $K=7$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+(5 puntos)
+\series default
+ La tasa de aciertos, definida como 
+\begin_inset Formula $\frac{c}{N}$
+\end_inset
+
+ donde 
+\begin_inset Formula $c$
+\end_inset
+
+ es la cantidad de estimaciones correctas, usando el mismo conjunto de datos
+ 
+\begin_inset Formula $X_{\textrm{train}}$
+\end_inset
+
+ como conjunto de prueba 
+\begin_inset Formula $X_{\textrm{test}}$
+\end_inset
+
+.
+ Documente los resultados y comentelos.
+ Puede probar otros valores de medias que faciliten la separabilidad de
+ los datos para facilitar la explicacion.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(20 puntos)
+\series default
+ Usando las funciones de particion de datos del paquete 
+\emph on
+sklearn 
+\emph default
+necesarias, implemente la particion de datos del conjunto de datos original
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ para crear las particiones 
+\begin_inset Formula $X_{\textrm{train}}$
+\end_inset
+
+ y 
+\begin_inset Formula $X_{\textrm{test}}$
+\end_inset
+
+.
+ Cree 10 particiones distintas, para ejecutar 10 veces el codigo.
+ Use 
+\begin_inset Formula $N=4000$
+\end_inset
+
+ (2000 observaciones por clase).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Utilice 70% de los datos para entrenamiento y el resto para prueba.
+\end_layout
+
+\begin_layout Enumerate
+Calcule la tasa de aciertos para las 2 configuraciones (distancia 
+\begin_inset Formula $\ell_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $\ell_{2}$
+\end_inset
+
+ ) probadas, usando 
+\begin_inset Formula $X_{\textrm{train}}$
+\end_inset
+
+ para entrenamiento y 
+\begin_inset Formula $X_{\textrm{test}}$
+\end_inset
+
+ para prueba.
+ Reporte los resultados en una tabla, junto con su media y desviacion estandar
+ y comentelos.
+\end_layout
+
+\begin_layout Enumerate
+Calcule ademas el tiempo de ejecucion por corrida para cada configuracion.
+ Reporte los resultados en una tabla, junto con su media y desviacion estandar
+ y comentelos.
+ Cual distancia resulto mas eficiente? Hay algun costo en cuanto a la tasa
+ de aciertos? Explique el porque de la diferencia en la tasa de aciertos,
+ si la hay.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
+(20 puntos extra) Implementación del algoritmo de Corte de grafos
+\end_layout
+
+\begin_layout Enumerate
+Implemente el algoritmo de corte de grafos visto en clase.
+\end_layout
+
+\begin_layout Enumerate
+Investigue como generar el conjunto de datos conocido como las 
+\emph on
+dos medias lunas 
+\emph default
+e implementelo en pytorch
+\emph on
+, 
+\emph default
+como se muestra en la Figura 
+\emph on
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Datos-en-configuracion"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename twomoons.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Datos en configuracion de 
+\emph on
+dos medias lunas.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Datos-en-configuracion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Compruebe el resultado de realizar el agrupamiento usando el algoritmo de
+ corte de grafos, usando el conjunto de datos de las 
+\emph on
+dos medias lunas
+\emph default
+, usando una separacion 
+\emph on
+grande 
+\emph default
+y otra pequena.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Grafique los resultados del agrupamiento.
+\end_layout
+
+\begin_layout Enumerate
+Reporte la tasa de aciertos respecto a una particion distinta de datos (particio
+n de 
+\emph on
+test
+\emph default
+) generada con la misma distribucion.
+\end_layout
+
+\begin_layout Enumerate
+Realice los dos pasos anteriores para el algoritmo de K-medias previamente
+ implementado.
+ Compare y comente los resultados.
+ 
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

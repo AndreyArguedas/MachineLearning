@@ -1,0 +1,348 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{palatino}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Aprendizaje Automático: Trabajo práctico 2
+\end_layout
+
+\begin_layout Author
+Ph.
+ D.
+ Saúl Calderón Ramírez 
+\begin_inset Newline newline
+\end_inset
+
+Instituto Tecnológico de Costa Rica,
+\end_layout
+
+\begin_layout Author
+PAttern Recongition and MAchine Learning Group (PARMA-Group)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Fecha de entrega:
+\series default
+ Martes 31 de Mayo del 2022.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Entrega
+\series default
+: Un archivo .zip con el código fuente LaTeX o Lyx, el pdf, y un jupyter
+ en Pytorch, debidamente documentado, con una función definida por ejercicio.
+ A través del TEC-digital.
+\end_layout
+
+\begin_layout Section
+Implementación del algoritmo K-medias
+\end_layout
+
+\begin_layout Enumerate
+Genere un conjunto de datos 
+\begin_inset Formula $X\in\mathbb{R}^{D\times N}$
+\end_inset
+
+ con 
+\begin_inset Formula $D=2$
+\end_inset
+
+ y 
+\begin_inset Formula $N=200$
+\end_inset
+
+, de 
+\begin_inset Formula $K=2$
+\end_inset
+
+ etiquetas, donde: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+100 observaciones correspondan a un 
+\emph on
+cluster 
+\emph default
+y las otras 100 a otro, generados por una VA Gaussiana con dos medias 
+\begin_inset Formula $\vec{\mu}_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $\vec{\mu}_{2}$
+\end_inset
+
+ y matrices de covarianza 
+\begin_inset Formula $\Sigma_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $\Sigma_{2}$
+\end_inset
+
+ (escoja los valores de forma que haya covarianzas no nulas, haciendo que
+ los datos roten).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Genere un caso en el que las medias y las covarianzas faciliten la separación
+ de los datos, 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Genere otro caso en el que las medias y covarianzas generen datos traslapados,
+ 
+\begin_inset Formula $X_{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Grafique las muestras, con las etiquetas correctas y sin las etiquetas,
+ usando una simbología de su preferencia.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Implemente alguno de los algoritmos de aprendizaje no supervisado vistos
+ en clase (K-medias o corte de grafos), para realizar la clasificación de
+ los dos conjuntos 
+\begin_inset Formula $X_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $X_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Realice una implementación usando la distancia Euclidiana para medir la
+ disimilitud de las muestras.
+\end_layout
+
+\begin_layout Enumerate
+Proponga e implemente el algoritmo usando otra distancia, como la distancia
+ L1 o de Mahalanobis.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Reporte los resultados, con gráficas que muestren las etiquetas generadas
+ por el algoritmo.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Reporte ademas el tiempo de ejecucion promedio y la desviacion estandar
+ para cada variante con cada distancia.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
+(20 puntos extra) Implementación del algoritmo de Corte de grafos
+\end_layout
+
+\begin_layout Enumerate
+Implemente el algoritmo de corte de grafos visto en clase.
+\end_layout
+
+\begin_layout Enumerate
+Investigue como generar el conjunto de datos conocido como las 
+\emph on
+dos medias lunas 
+\emph default
+e implementelo en pytorch
+\emph on
+, 
+\emph default
+como se muestra en la Figura 
+\emph on
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Datos-en-configuracion"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename twomoons.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Datos en configuracion de 
+\emph on
+dos medias lunas.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Datos-en-configuracion"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Compruebe el resultado de realizar el agrupamiento usando el algoritmo de
+ corte de grafos, usando el conjunto de datos de las 
+\emph on
+dos medias lunas
+\emph default
+, usando una separacion 
+\emph on
+grande 
+\emph default
+y otra pequena.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Grafique los resultados del agrupamiento.
+\end_layout
+
+\begin_layout Enumerate
+Reporte la tasa de aciertos respecto a una particion distinta de datos (particio
+n de 
+\emph on
+test
+\emph default
+) generada con la misma distribucion.
+\end_layout
+
+\begin_layout Enumerate
+Realice los dos pasos anteriores para el algoritmo de K-medias previamente
+ implementado.
+ Compare y comente los resultados.
+ 
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
