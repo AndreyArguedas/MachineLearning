@@ -162,8 +162,8 @@ y las otras 100 a otro, generados por una VA Gaussiana con dos medias
 \begin_inset Formula $\Sigma_{2}$
 \end_inset
 
- (escoja los valores de forma que haya covarianzas no nulas, haciendo que
- los datos roten).
+ (escoja los valores de forma que haya covarianzas no nulas, y varianzas
+ diferentes en cada dimension, haciendo que los datos roten).
 \end_layout
 
 \begin_deeper
@@ -194,8 +194,8 @@ Grafique las muestras, con las etiquetas correctas y sin las etiquetas,
 \end_deeper
 \begin_layout Enumerate
 Implemente alguno de los algoritmos de aprendizaje no supervisado vistos
- en clase (K-medias o corte de grafos), para realizar la clasificación de
- los dos conjuntos 
+ en clase (K-medias), para realizar la clasificación de los dos conjuntos
+ 
 \begin_inset Formula $X_{1}$
 \end_inset
 
@@ -203,6 +203,11 @@ Implemente alguno de los algoritmos de aprendizaje no supervisado vistos
 \begin_inset Formula $X_{2}$
 \end_inset
 
+.
+ 
+\series bold
+Hagalo de forma completamente matricial usando Pytorch
+\series default
 .
 \end_layout
 
@@ -219,8 +224,10 @@ Proponga e implemente el algoritmo usando otra distancia, como la distancia
 \end_layout
 
 \begin_layout Enumerate
-Reporte los resultados, con gráficas que muestren las etiquetas generadas
- por el algoritmo.
+Reporte los resultados midiendo la tasa de aciertos (media y desviacion
+ estandar), con gráficas que muestren las etiquetas generadas por el algoritmo.
+ Realicelo para 10 corridas.
+ 
 \end_layout
 
 \begin_deeper
