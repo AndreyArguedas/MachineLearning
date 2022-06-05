@@ -394,8 +394,9 @@ Nota: ________________
 \begin_inset Text
 
 \begin_layout Plain Layout
-Nombre del (la) estudiante: ____________________________________________________
-____________________
+Nombre del (la) estudiante: 
+\series bold
+Andrey Arguedas Espinoza
 \end_layout
 
 \end_inset
@@ -435,7 +436,9 @@ ____________________
 \begin_inset Text
 
 \begin_layout Plain Layout
-Carné: ___________________________
+Carné: 
+\series bold
+2020426569
 \end_layout
 
 \end_inset
@@ -547,6 +550,118 @@ Calcule, usando minimos cuadrados, la ecuacion de
 \end_inset
 
  optimo.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=\frac{1}{2}\left[\overrightarrow{\theta}^{T}\left(X\,\vec{w}-\vec{t}\right)*\overrightarrow{\theta}^{T}\left(X\,\vec{w}-\vec{t}\right)\right]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=\frac{1}{2}\left[\left(\overrightarrow{\theta}X\,\vec{w}-\overrightarrow{\theta}\vec{t}\right)*\left(\overrightarrow{\theta}X\,\vec{w}-\overrightarrow{\theta}\vec{t}\right)\right]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=\frac{1}{2}\left[\overrightarrow{\theta}X\,\vec{w}*\overrightarrow{\theta}X\,\vec{w}-\overrightarrow{\theta}X\,\vec{w}*\overrightarrow{\theta}\vec{t}-\overrightarrow{\theta}\vec{t}*\overrightarrow{\theta}X\,\vec{w}+\overrightarrow{\theta}\vec{t}*\overrightarrow{\theta}\vec{t}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=\frac{1}{2}\left[(\overrightarrow{\theta}X\,\vec{w})^{2}-(\overrightarrow{\theta}\vec{t})^{2}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=\frac{1}{2}\left[(\frac{1}{\sqrt{2\pi\tau^{2}}}e^{-\left(\frac{x_{i}-x}{\tau}\right)^{2}}*X\,\vec{w})^{2}-(\frac{1}{\sqrt{2\pi\tau^{2}}}e^{-\left(\frac{x_{i}-x}{\tau}\right)^{2}}*\vec{t})^{2}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=\frac{1}{2}\left[(\frac{1}{\sqrt{2\pi\tau^{2}}}e^{-\left(\frac{x_{i}-x}{\tau}\right)^{2}}*X\,\vec{w})^{2}-(\frac{1}{\sqrt{2\pi\tau^{2}}}e^{-\left(\frac{x_{i}-x}{\tau}\right)^{2}}*\vec{t})^{2}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=2*\frac{X\,e^{-\left(\frac{x_{i}-x}{\tau}\right)^{2}}}{\sqrt{2\pi\tau}}*\frac{d}{dw}[w]+\frac{d}{dw}[w]*2(-\frac{\vec{t}e^{-\left(\frac{x_{i}-x}{\tau^{2}}\right)^{2}}}{\sqrt{2\pi\tau}})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E\left(\vec{w}\right)=2*\frac{X\,e^{-\left(\frac{x_{i}-x}{\tau^{2}}\right)^{2}}}{\sqrt{2\pi\tau}}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
